@@ -70,7 +70,7 @@ bool MainScene::init() {
 	if (IsMusicOn)
 	{
 		AudioEngine::pauseAll();
-		auto mainMusicAudio = AudioEngine::play2d("BGM.mp3");
+		auto mainMusicAudio = AudioEngine::play2d("BGM.mp3", true);
 		AudioEngine::setVolume(mainMusicAudio, 0.3f);
 	}
 
