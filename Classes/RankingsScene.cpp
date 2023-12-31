@@ -56,10 +56,15 @@ bool RankingsScene::init() {
 
     for (int j = 0; j < AllScores.size(); j++) {
         std::string Rank = "Rank" + std::to_string(j + 1);
-        Label* RANK = Label::createWithTTF(Rank+"         "+ std::to_string(AllScores[j]), "fonts/tahomabd.ttf", 50);
-        RANK->setColor(Color3B(119, 110, 101));
-        RANK->setPosition(visibleSize.width / 2, visibleSize.height - 70 - 20 * j);
+        Label* RANK = Label::createWithTTF(Rank, "fonts/tahomabd.ttf", 40);
+        RANK->setColor(Color3B(187, 173, 161));
+        RANK->setPosition(visibleSize.width / 2-90, visibleSize.height - 130 - 50 * j);
         this->addChild(RANK);
+
+        Label* SCORE = Label::createWithTTF(std::to_string(AllScores[j]), "fonts/tahomabd.ttf", 40);
+        SCORE->setColor(Color3B(187, 173, 161));
+        SCORE->setPosition(visibleSize.width / 2+90, visibleSize.height - 130 - 50 * j);
+        this->addChild(SCORE);
     }
 
     return true;

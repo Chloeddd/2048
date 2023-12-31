@@ -492,6 +492,11 @@ void GameScene::PauseGame(Ref* pSender)
     }
 }
 
+bool cmp(int x, int y)
+{
+    return x > y;
+}
+
 void GameScene::UpdateRankings(int NewScore)
 {
     int x;
@@ -505,10 +510,10 @@ void GameScene::UpdateRankings(int NewScore)
     }
 
     AllScore.push_back(NewScore);
-    sort(AllScore.begin(), AllScore.end());
+    sort(AllScore.begin(), AllScore.end(),cmp);
 
     for (int j = 0; j < 10 && j < AllScore.size(); j++) {//更新前十名存回去
         std::string Rank = "Rank" + std::to_string(j+1);
-        userDefault->setIntegerForKey("Rank.c_str()", AllScore[j]);
+        userDefault->setIntegerForKey(Rank.c_str(), AllScore[j]);
     }
 }
