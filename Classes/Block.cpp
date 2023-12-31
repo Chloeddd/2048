@@ -42,8 +42,8 @@ void Block::MoveBlock(int newRow,int newCol)
 	this->setPosition(Vec2(BOARD_X + newCol * (BlockSize + 15.0f), BOARD_Y + (3 - newRow) * (BlockSize + 15.0f)));
 
 	if (IsMusicOn) {
-		auto MoveSound = AudioEngine::play2d("move.mp3");
-		AudioEngine::setVolume(MoveSound, 1.0f);
+		auto MoveSound = AudioEngine::play2d("BlockMove.mp3");
+		AudioEngine::setVolume(MoveSound, 0.1f);
 	}
 
 	this->BlockCol = newCol;
