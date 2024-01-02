@@ -8,7 +8,7 @@ bool Block::init()
 	if (!Sprite::init())
 		return false;
 
-	//ĞÂ·½¿éÓĞ75%¸ÅÂÊÎª2£¬25%¸ÅÂÊÎª4
+	//æ–°æ–¹å—æœ‰75%æ¦‚ç‡ä¸º2ï¼Œ25%æ¦‚ç‡ä¸º4
 	int p = rand() % 4;
 	this->BlockNum = p < 3 ? 2 : 4;
 
@@ -16,7 +16,7 @@ bool Block::init()
 	BlockColor->setTag(BlockBG);
 	this->addChild(BlockColor);
 
-	//ÉèÖÃ²»Í¬·½¿éÑÕÉ«
+	//è®¾ç½®ä¸åŒæ–¹å—é¢œè‰²
 	if (BlockNum == 2)
 		BlockColor->setColor(Color3B(238, 228, 218));
 	else
@@ -26,7 +26,7 @@ bool Block::init()
 	number->setColor(Color3B(119, 110, 101));
 	number->setTag(BlockNUM);
 
-	//Êı×Ö×÷Îª·½¿éµÄ×Ó½Úµã£¬ÖÃÎªÖĞĞÄ
+	//æ•°å­—ä½œä¸ºæ–¹å—çš„å­èŠ‚ç‚¹ï¼Œç½®ä¸ºä¸­å¿ƒ
 	number->setPosition(Vec2(BlockSize / 2, BlockSize / 2));
 	BlockColor->addChild(number);
 
@@ -35,10 +35,6 @@ bool Block::init()
 
 void Block::MoveBlock(int newRow,int newCol)
 {
-	//¶¯»­ÔİÊ±ÓĞbug£¬ºóĞŞ¸Ä
-	//auto moveToAction = MoveTo::create(0.1f, Vec2(BOARD_X + newCol * (BlockSize + 15.0f), BOARD_Y + (3 - newRow) * (BlockSize + 15.0f)));
-	//this->runAction(moveToAction);
-
 	this->setPosition(Vec2(BOARD_X + newCol * (BlockSize + 15.0f), BOARD_Y + (3 - newRow) * (BlockSize + 15.0f)));
 
 	if (IsMusicOn) {
@@ -53,12 +49,12 @@ void Block::MoveBlock(int newRow,int newCol)
 void Block::ChangeBlock()
 {
 	this->BlockNum = this->BlockNum * 2;
-	//¸ù¾İÔ¤Éè½ÚµãTagÕÒµ½¶ÔÓ¦µÄ·½¿é
+	//æ ¹æ®é¢„è®¾èŠ‚ç‚¹Tagæ‰¾åˆ°å¯¹åº”çš„æ–¹å—
 	auto blockColor= this->getChildByTag(BlockBG);
 
-	//blockColor->removeChildByTag(BlockNUM);//É¾³ıÔ­À´µÄÊı×Ö½Úµã
+	//blockColor->removeChildByTag(BlockNUM);//åˆ é™¤åŸæ¥çš„æ•°å­—èŠ‚ç‚¹
 
-	//ĞŞ¸ÄÏÔÊ¾µÄlabelÊı×Ö
+	//ä¿®æ”¹æ˜¾ç¤ºçš„labelæ•°å­—
 	auto blockNumber= dynamic_cast<Label*>(blockColor->getChildByTag(BlockNUM));
 	blockNumber->setString(StringUtils::format("%d", this->BlockNum));
 
@@ -88,31 +84,31 @@ void Block::ChangeBlock()
 		case 128:
 			blockColor->setColor(Color3B(237, 207, 114));
 			blockNumber->setColor(Color3B(249, 246, 242));
-			newTtfConfig.fontSize = 50;  //ĞŞ¸Ä×ÖºÅÒÔÊÊÓ¦¶àÎ»Êı
+			newTtfConfig.fontSize = 50;  //ä¿®æ”¹å­—å·ä»¥é€‚åº”å¤šä½æ•°
 			blockNumber->setTTFConfig(newTtfConfig);
 			break;
 		case 256:
 			blockColor->setColor(Color3B(237, 204, 97));
 			blockNumber->setColor(Color3B(249, 246, 242));
-			newTtfConfig.fontSize = 50;  //ĞŞ¸Ä×ÖºÅÒÔÊÊÓ¦¶àÎ»Êı
+			newTtfConfig.fontSize = 50;  //ä¿®æ”¹å­—å·ä»¥é€‚åº”å¤šä½æ•°
 			blockNumber->setTTFConfig(newTtfConfig);
 			break;
 		case 512:
 			blockColor->setColor(Color3B(237, 200, 80));
 			blockNumber->setColor(Color3B(249, 246, 242));
-			newTtfConfig.fontSize = 50;  //ĞŞ¸Ä×ÖºÅÒÔÊÊÓ¦¶àÎ»Êı
+			newTtfConfig.fontSize = 50;  //ä¿®æ”¹å­—å·ä»¥é€‚åº”å¤šä½æ•°
 			blockNumber->setTTFConfig(newTtfConfig);
 			break;
 		case 1024:
 			blockColor->setColor(Color3B(227, 185, 23));
 			blockNumber->setColor(Color3B(249, 246, 242));
-			newTtfConfig.fontSize = 40;  //ĞŞ¸Ä×ÖºÅÒÔÊÊÓ¦¶àÎ»Êı
+			newTtfConfig.fontSize = 40;  //ä¿®æ”¹å­—å·ä»¥é€‚åº”å¤šä½æ•°
 			blockNumber->setTTFConfig(newTtfConfig);
 			break;
 		case 2048:
 			blockColor->setColor(Color3B(234, 195, 4));
 			blockNumber->setColor(Color3B(249, 246, 242));
-			newTtfConfig.fontSize = 40;  //ĞŞ¸Ä×ÖºÅÒÔÊÊÓ¦¶àÎ»Êı
+			newTtfConfig.fontSize = 40;  //ä¿®æ”¹å­—å·ä»¥é€‚åº”å¤šä½æ•°
 			blockNumber->setTTFConfig(newTtfConfig);
 			break;
 	}
